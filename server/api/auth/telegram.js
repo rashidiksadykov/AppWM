@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const query = getQuery(event);
 
   // Проверка данных от Telegram
-  const secret = crypto.createHash('sha256').update('<YOUR_BOT_TOKEN>').digest();
+  const secret = crypto.createHash('sha256').update('process.env.TELEGRAM_BOT_TOKEN').digest();
   const checkString = Object.keys(query)
     .filter((key) => key !== 'hash')
     .sort()
