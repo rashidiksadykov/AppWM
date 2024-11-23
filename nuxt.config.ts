@@ -1,10 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import { defineNuxtConfig } from 'nuxt'
-import dotenv from 'dotenv'
 
-// Загружаем переменные окружения
-require('dotenv').config()
 
 
 export default defineNuxtConfig({
