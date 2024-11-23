@@ -1,17 +1,16 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import dotenv from 'dotenv'
 
-import { defineNuxtConfig } from 'nuxt'
+// Загружаем переменные окружения
+dotenv.config()
 
-
-
-export default defineNuxtConfig({
+export default {
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
-
+  devtools: { enabled: true }, // Не забываем запятую!
 
   runtimeConfig: {
     public: {
       telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
     },
-
-})
+    apiKey: process.env.API_KEY || '',
+  },
+}
