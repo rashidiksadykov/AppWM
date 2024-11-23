@@ -1,13 +1,14 @@
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
     try {
-      // Извлечение GET-параметров из запроса
+      // Извлечение GET-параметров
       const query = getQuery(event)
   
-      // Логируем полученные данные
+      // Логируем полученные параметры
       console.log('Received query:', query)
   
       // Проверяем обязательные параметры
       if (!query.id || !query.username) {
+        console.log('Missing required parameters')
         return {
           statusCode: 400,
           message: 'Missing required parameters (id, username)',
@@ -25,17 +26,20 @@ export default defineEventHandler((event) => {
         hash: query.hash || '',
       }
   
-      // Логируем объект для отладки
+      // Логируем объект данных
       console.log('Processed userData:', userData)
   
-      // Возвращаем объект данных
+      // Возвращаем объект
       return {
         statusCode: 200,
         message: 'Success',
         data: userData,
       }
     } catch (error) {
-      console.error('Error processing request:', error)
+      // Логируем ошибку
+      console.error('Error in handler:', error.message, error.stack)
+  
+      // Возвращаем стандартный ответ 500
       return {
         statusCode: 500,
         message: 'Internal Server Error',
